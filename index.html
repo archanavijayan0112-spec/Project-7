@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Study Buddy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="AI Study Buddy workspace">
+        <aside class="input-panel">
+          <div class="brand-row">
+            <div>
+              <p class="eyebrow">Local AI project</p>
+              <h1>AI Study Buddy</h1>
+            </div>
+            <button id="loadSample" class="icon-button" type="button" title="Load sample notes" aria-label="Load sample notes">
+              <span aria-hidden="true">+</span>
+            </button>
+          </div>
+
+          <label for="notesInput">Study notes</label>
+          <textarea id="notesInput" spellcheck="true" placeholder="Paste a chapter, lecture notes, or an article here..."></textarea>
+
+          <div class="controls">
+            <label class="range-label" for="summaryLength">
+              Summary length
+              <span id="summaryLengthValue">4</span>
+            </label>
+            <input id="summaryLength" type="range" min="2" max="8" value="4" />
+          </div>
+
+          <div class="actions">
+            <button id="analyzeBtn" class="primary-button" type="button">Analyze Notes</button>
+            <button id="clearBtn" class="secondary-button" type="button">Clear</button>
+          </div>
+        </aside>
+
+        <section class="results-panel">
+          <header class="topbar">
+            <nav class="tabs" aria-label="Result views">
+              <button class="tab active" type="button" data-tab="summary">Summary</button>
+              <button class="tab" type="button" data-tab="flashcards">Flashcards</button>
+              <button class="tab" type="button" data-tab="quiz">Quiz</button>
+              <button class="tab" type="button" data-tab="ask">Ask</button>
+            </nav>
+            <div class="stats" aria-live="polite">
+              <span id="wordCount">0 words</span>
+              <span id="readingTime">0 min</span>
+            </div>
+          </header>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-mark">AI</div>
+            <h2>Paste notes and analyze them.</h2>
+            <p>Everything runs in your browser using keyword scoring, sentence ranking, and text matching.</p>
+          </div>
+
+          <article id="summaryView" class="view active">
+            <section class="section-block">
+              <h2>Smart Summary</h2>
+              <ol id="summaryList" class="summary-list"></ol>
+            </section>
+            <section class="section-block">
+              <h2>Key Terms</h2>
+              <div id="keywordList" class="keyword-list"></div>
+            </section>
+          </article>
+
+          <article id="flashcardsView" class="view">
+            <div id="flashcardGrid" class="flashcard-grid"></div>
+          </article>
+
+          <article id="quizView" class="view">
+            <div id="quizList" class="quiz-list"></div>
+          </article>
+
+          <article id="askView" class="view ask-view">
+            <form id="askForm" class="ask-form">
+              <input id="questionInput" type="search" placeholder="Ask a question about your notes..." autocomplete="off" />
+              <button class="primary-button" type="submit">Ask</button>
+            </form>
+            <div id="answerBox" class="answer-box">
+              <p>Your answer will appear here after analysis.</p>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

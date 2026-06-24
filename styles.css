@@ -1,0 +1,421 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --panel-soft: #f0f5f7;
+  --ink: #17202a;
+  --muted: #697784;
+  --line: #dce3e8;
+  --accent: #0f766e;
+  --accent-dark: #115e59;
+  --coral: #c2410c;
+  --gold: #a16207;
+  --shadow: 0 18px 50px rgba(23, 32, 42, 0.11);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.12), transparent 32%),
+    linear-gradient(315deg, rgba(194, 65, 12, 0.12), transparent 28%),
+    var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+  gap: 18px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.input-panel,
+.results-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.input-panel {
+  display: flex;
+  min-height: calc(100vh - 56px);
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 8px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 0.95;
+}
+
+h2 {
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}
+
+label {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+textarea {
+  width: 100%;
+  min-height: 44vh;
+  flex: 1;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--ink);
+  background: #fbfcfd;
+  line-height: 1.55;
+}
+
+textarea:focus,
+input:focus {
+  border-color: var(--accent);
+  outline: 3px solid rgba(15, 118, 110, 0.16);
+}
+
+.controls {
+  display: grid;
+  gap: 8px;
+}
+
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.primary-button,
+.secondary-button,
+.icon-button,
+.tab {
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.primary-button {
+  background: var(--accent);
+  color: white;
+}
+
+.primary-button:hover {
+  background: var(--accent-dark);
+}
+
+.secondary-button,
+.icon-button,
+.tab {
+  background: var(--panel-soft);
+  color: var(--ink);
+}
+
+.secondary-button:hover,
+.icon-button:hover,
+.tab:hover {
+  border-color: var(--accent);
+}
+
+.icon-button {
+  width: 42px;
+  flex: 0 0 42px;
+  font-size: 1.45rem;
+}
+
+.results-panel {
+  position: relative;
+  min-height: calc(100vh - 56px);
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab {
+  min-width: 92px;
+  padding: 0 14px;
+}
+
+.tab.active {
+  background: var(--ink);
+  color: white;
+}
+
+.stats {
+  display: flex;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.view,
+.empty-state {
+  display: none;
+  padding: 22px;
+}
+
+.view.active,
+.empty-state.active {
+  display: block;
+}
+
+.empty-state {
+  min-height: calc(100vh - 140px);
+  align-content: center;
+  text-align: center;
+}
+
+.empty-mark {
+  display: inline-grid;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 18px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: white;
+  font-weight: 900;
+}
+
+.empty-state h2 {
+  margin-bottom: 8px;
+  font-size: 1.7rem;
+}
+
+.empty-state p {
+  max-width: 460px;
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+.section-block {
+  margin-bottom: 28px;
+}
+
+.summary-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 26px;
+}
+
+.summary-list li,
+.quiz-card,
+.answer-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 14px;
+  line-height: 1.55;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.keyword {
+  border: 1px solid rgba(15, 118, 110, 0.32);
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.09);
+  padding: 8px 11px;
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.flashcard {
+  min-height: 170px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px;
+  text-align: left;
+}
+
+.flashcard strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--coral);
+}
+
+.flashcard p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.quiz-list {
+  display: grid;
+  gap: 14px;
+}
+
+.quiz-card h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.quiz-card button {
+  margin-top: 10px;
+}
+
+.quiz-answer {
+  display: none;
+  margin-top: 12px;
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.quiz-card.revealed .quiz-answer {
+  display: block;
+}
+
+.ask-view {
+  display: none;
+}
+
+.ask-view.active {
+  display: grid;
+  gap: 16px;
+}
+
+.ask-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.ask-form input {
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+}
+
+.answer-box {
+  min-height: 140px;
+}
+
+.answer-box p:last-child {
+  margin-bottom: 0;
+}
+
+.confidence {
+  color: var(--gold);
+  font-weight: 800;
+}
+
+@media (max-width: 880px) {
+  .app-shell {
+    padding: 12px;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .input-panel,
+  .results-panel {
+    min-height: auto;
+  }
+
+  textarea {
+    min-height: 260px;
+  }
+
+  .topbar,
+  .ask-form {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    display: grid;
+  }
+
+  .stats {
+    white-space: normal;
+  }
+}
